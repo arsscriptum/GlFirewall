@@ -32,6 +32,7 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <Import Project="$(ProjectDir)cfg\winapp.props" Label="ProjectConfig" />
   <Import Project="$(ProjectDir)cfg\dejainsight.props" Condition="'$(dejainsight_integration)' == ''" />
+  <Import Project="$(ProjectDir)cfg\freeglut.props" Condition="'$(freeglut_integration)' == ''" />
   <PropertyGroup Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v142</PlatformToolset>
@@ -66,6 +67,8 @@
     </ClCompile>
     <ClCompile Include="$(SourcesDirectory)cmdline.cpp" />
     <ClCompile Include="$(SourcesDirectory)init.cpp" />
+    <ClCompile Include="$(SourcesDirectory)camera.cpp" />
+    <ClCompile Include="$(SourcesDirectory)displaymgr.cpp" />
     <ClCompile Include="$(SourcesDirectory)log.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +78,8 @@
     <ClInclude Include="$(SourcesDirectory)cmdline.h" />
     <ClInclude Include="$(SourcesDirectory)log.h" />
     <ClInclude Include="$(SourcesDirectory)macros.h" />
+    <ClInclude Include="$(SourcesDirectory)displaymgr.h" />
+    <ClInclude Include="$(SourcesDirectory)camera.h" />
     <ClInclude Include="$(SourcesDirectory)nowarns.h" />
     <ClInclude Include="$(SourcesDirectory)stdafx.h" />
     <ClInclude Include="$(SourcesDirectory)targetver.h" />

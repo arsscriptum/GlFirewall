@@ -13,7 +13,7 @@
 #include "cmdline.h"
 #include "Shlwapi.h"
 #include "log.h"
-
+#include "displaymgr.h"
 #include <codecvt>
 #include <locale>
 #include <vector>
@@ -24,6 +24,9 @@
 #include <iostream>
 #include <sstream>
 
+#include <GL/glut.h>
+#include <iostream>
+
 
 using namespace std;
 
@@ -31,7 +34,16 @@ using namespace std;
 #pragma message( "Last modified on " __TIMESTAMP__ )
 
 void banner();
+void display();
 void usage();
+void init();
+void reshape(int width, int height);
+void KeyDown(unsigned char key, int x, int y);
+void DrawNet(GLfloat size, GLint LinesX, GLint LinesZ);
+void Display(void);
+void KeyDown(unsigned char key, int x, int y);
+int run(int argc, char** argv);
+//include the camera class:
 
 int main(int argc, TCHAR** argv, TCHAR envp)
 {
@@ -77,6 +89,7 @@ int main(int argc, TCHAR** argv, TCHAR envp)
 	COUTC("               TEST APPLICATION                ");
 	COUTC("===============================================");
 
+	DisplayMgr displayMgr(argc, argv);
 
 	return 0;
 }
@@ -99,6 +112,3 @@ void usage() {
 	COUTCS("   -p path     Destination path\n");
 	std::wcout << std::endl;
 }
-
-
-

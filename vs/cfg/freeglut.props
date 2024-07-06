@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<PropertyGroup Label="PropertySheets_Included">
+  <freeglut_integration>winapp_uses_freeglut</freeglut_integration>
+</PropertyGroup>
+    
+<!--
+    //==============================================================================
+    //
+    //   freeglut.props
+    //   Property sheet for the freeglut log tool integration.
+    //==============================================================================
+    //  Copyright (C) Guilaume Plante 2020 <codecastor@icloud.com>
+    //==============================================================================
+-->
+
+
+  <!-- General CodeMeter Environment added in UserMacros -->
+  <PropertyGroup Label="CodeMeterMacros">
+    <freeglut_Lib>freeglut.lib</freeglut_Lib>
+    <freeglut_Dll>freeglut.dll</freeglut_Dll>    
+    <RootDir>$(ProjectDir)..\</RootDir> 
+    <ExternalsDir>$(RootDir)externals\</ExternalsDir> 
+    <FreeGlutDir>$(ExternalsDir)freeglut\</FreeGlutDir> 
+    <FreeGlutIncludesDir>$(FreeGlutDir)include\</FreeGlutIncludesDir> 
+  </PropertyGroup>   
+
+  <Choose>
+    <When Condition="'$(Platform)'=='x64'">
+      <PropertyGroup>
+          <FreeGlutLibrariesDir>$(FreeGlutDir)lib\x64\</FreeGlutLibrariesDir> 
+          <FreeGlutBinariesDir>$(FreeGlutDir)bin\x64\</FreeGlutBinariesDir> 
+      </PropertyGroup>
+    </When>
+    <Otherwise>
+      <PropertyGroup>
+        <FreeGlutLibrariesDir>$(FreeGlutDir)lib\</FreeGlutLibrariesDir> 
+        <FreeGlutBinariesDir>$(FreeGlutDir)bin\</FreeGlutBinariesDir> 
+      </PropertyGroup>
+    </Otherwise>
+  </Choose>
+
+   <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(FreeGlutIncludesDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>FREEGLUT_ENABLED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(FreeGlutLibrariesDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(freeglut_Lib);%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy $(FreeGlutBinariesDir)\$(freeglut_Dll) $(OutDir)</Command>
+    </PostBuildEvent>    
+  </ItemDefinitionGroup>
+</Project>
+
