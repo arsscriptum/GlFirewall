@@ -46,10 +46,11 @@ void DisplayMgr::init() {
 void DisplayMgr::displayMain() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
+
     glTranslatef(0.0f, 0.0f, -camZ);
     glRotatef(camAngleX, 1.0, 0.0, 0.0);
     glRotatef(camAngleY, 0.0, 1.0, 0.0);
-
+	
     // Draw a brick wall
     glBegin(GL_QUADS);
 
@@ -303,7 +304,6 @@ void DisplayMgr::KeyDown(unsigned char key, int x, int y)
 void DisplayMgr::keyboardWrapper(unsigned char key, int x, int y) {
 	instance->KeyDown(key,x,y);
 }
-
 
 void DisplayMgr::displayWrapper() {
     instance->displayMain();
